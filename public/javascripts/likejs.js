@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
     })
 })
 function renderCounts(article) {
-    let articleTotalLikes = `http://localhost:3000/likes/total?article=${article}`
+    let articleTotalLikes = `http://node-env.eba-upmtcmyc.us-east-1.elasticbeanstalk.com/likes/total?article=${article}`
     fetch(articleTotalLikes)
         .then((resp) => {
             return resp.json()
@@ -34,7 +34,7 @@ function renderCounts(article) {
         })
 }
 function increaseLikes(article) {
-    let articleIncreaseLikes = `http://localhost:3000/likes/like?article=${article}`
+    let articleIncreaseLikes = `http://node-env.eba-upmtcmyc.us-east-1.elasticbeanstalk.com/likes/like?article=${article}`
     fetch(articleIncreaseLikes)
         .then((resp) => {
             return resp.json()
@@ -44,7 +44,7 @@ function increaseLikes(article) {
         })
 }
 function decreaseLikes(article) {
-    let articleDecreaseLikes = `http://localhost:3000/likes/dislike?article=${article}`
+    let articleDecreaseLikes = `http://node-env.eba-upmtcmyc.us-east-1.elasticbeanstalk.com/likes/dislike?article=${article}`
     fetch(articleDecreaseLikes)
         .then((resp) => {
             return resp.json()
@@ -55,7 +55,7 @@ function decreaseLikes(article) {
 }
 function checkLiked(article) {
     let likeBTN = document.getElementById('likeCheckbox')
-    let currentArticleLike = `http://localhost:3000/likes/check?article=${article}`
+    let currentArticleLike = `http://node-env.eba-upmtcmyc.us-east-1.elasticbeanstalk.com/likes/check?article=${article}`
     fetch(currentArticleLike)
         .then((resp) => {
             return resp.json()
@@ -66,7 +66,7 @@ function checkLiked(article) {
         })
 }
 function checkCookie() {
-    let queryUrl = `http://localhost:3000/likes/setcookie`;
+    let queryUrl = `http://node-env.eba-upmtcmyc.us-east-1.elasticbeanstalk.com/likes/setcookie`;
     fetch(queryUrl)
         .then((resp) => {
             return resp
