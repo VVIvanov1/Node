@@ -30,7 +30,7 @@ app.use(csp({
         imgSrc: ['*']
     }
 }));
-app.use(responseTime());
+// app.use(responseTime());
 
 // const node2 = cp.fork('./worker/app_FORK.js');
 
