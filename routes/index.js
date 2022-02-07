@@ -13,6 +13,9 @@ mongoose.connect(connectionString)
 function renderLike(req, res, next) {
   res.render('index', { title: 'Liker tool' })
 }
+router.get('/', (req,res,next)=>{
+  res.send('it works')
+})
 
 
 
