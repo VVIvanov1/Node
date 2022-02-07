@@ -11,7 +11,7 @@ const helmet = require('helmet');
 const csp = require('helmet-csp');
 
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
+// const usersRouter = require('./routes/users');
 const likesRouter = require('./routes/likes')
 
 const app = express();
