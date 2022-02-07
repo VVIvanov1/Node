@@ -28,7 +28,7 @@ router.get('/total', async (req, res, next) => {
     likesTotal.findOne({ pageId: req.query.article }, function (err, data) {
         if (data == null) {
 
-            res.json({ count: 0 })
+            res.json({ count: 10 })
         } else {
 
             res.json({ count: data.pageLikes })
