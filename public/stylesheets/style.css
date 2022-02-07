@@ -1,0 +1,35 @@
+:root {
+  --size: 100px;
+  --frames: 62;
+}
+
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00b7ff;
+}
+.container {
+  width: 50%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  margin-top: 200px;
+  background: #00b7ff;
+  align-items: center;
+}
+
+.btn {
+  padding: 10px;
+  pointer-events: auto;
+}
+.likesCount{
+  text-align: center;
+  font-size: 20px;
+  font-weight: 500;
+  display: block;
+}
+
+

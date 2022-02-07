@@ -1,9 +1,28 @@
 const express = require('express');
 const router = express.Router();
 
-router.get('/', (req,res,next)=>{
-    res.send('it works as well!')
-})
+const mongoose = require('mongoose');
+
+const { Schema } = mongoose;
 
 
-module.exports = router
+let connectionString = process.env.MONGOOSE_CONNECTION;
+mongoose.connect(connectionString)
+
+
+function renderLike(req, res, next) {
+  res.render('index', { title: 'Liker tool' })
+}
+
+
+
+router.get('/art-about-cats',  renderLike)
+
+router.get('/art-about-cats-2',  renderLike)
+
+
+
+
+module.exports = router;
+
+
