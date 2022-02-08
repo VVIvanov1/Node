@@ -87,7 +87,7 @@ router.get("/dislike", checkCookie, function (req, res, next) {
 
 router.get("/check", async (req, res, next) => {
     try {
-        checkLikedMongo(req, res)
+       await checkLikedMongo(req, res)
     } catch (error) {
         console.log(error);
     }
