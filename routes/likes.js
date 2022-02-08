@@ -3,6 +3,8 @@ const router = express.Router();
 const { v4: uuidv4 } = require("uuid");
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
+const returnLikes  = require('../liker/scr')
+let pathToJson = './liker/likes.json'
 
 const id = uuidv4();
 let connectionString = process.env.MONGOOSE_CONNECTION;
@@ -23,26 +25,12 @@ const likesTotal = mongoose.model("pageslikes", pageTotalLikes);
 // router.get('/setcookie', checkCookie)
 
 router.get("/total", async (req, res, next)=> {
-    try {
-        await getTotal(req, res)
-    } catch (error) {
-        console.log(error);
-    }
-    // likesTotal.findOne({ pageId: req.query.article }, function (err, data) {
-    //     if (data == null) {
-    //         res.json({ count: 10 });
-    //     } else {
-    //         res.json({ count: data.pageLikes });
-    //     }
-    // });
-    // likesTotal.findOne({ pageId: req.query.article })
-    // .then((doc)=>{
-    //     if(doc){
-    //         res.json({ count: doc.pageLikes });
-    //     }else{
-    //         res.json({ count: 1 });
-    //     }
-    // })
+   try {
+       let likesThisPage = await returnLikes(pathToJson, req.query.article)
+       res.json({count: likesThisPage})
+   } catch (error) {
+       console.log(error);
+   }
 });
 async function getTotal(req, res) {
     likesTotal.findOne({ pageId: req.query.article })
