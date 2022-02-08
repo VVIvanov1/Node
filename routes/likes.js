@@ -25,7 +25,7 @@ const likesTotal = mongoose.model('pageslikes', pageTotalLikes)
 
 router.get('/total', async (req, res, next) => {
 
-    likesTotal.findOne({ pageId: req.query.article }, function (err, data) {
+   await likesTotal.findOne({ pageId: req.query.article }, function (err, data) {
         if (data == null) {
 
             res.json({ count: 10 })
@@ -37,9 +37,9 @@ router.get('/total', async (req, res, next) => {
 })
 router.get('/like', checkCookie, async (req, res, next) => {
     const query = { pageId: req.query.article }
-    likesTotal.findOne(query, (err, doc) => {
+   await likesTotal.findOne(query, (err, doc) => {
         if (doc == null) {
-            likesTotal.create({ pageId: req.query.article, pageLikes: 1 })
+           await likesTotal.create({ pageId: req.query.article, pageLikes: 1 })
             res.json({ count: 1 })
         } else {
             doc.pageLikes++
@@ -52,9 +52,9 @@ router.get('/like', checkCookie, async (req, res, next) => {
 })
 router.get('/dislike', checkCookie, async (req, res, next) => {
     const query = { pageId: req.query.article }
-    likesTotal.findOne(query, (err, doc) => {
+  await  likesTotal.findOne(query, (err, doc) => {
         if (doc == null) {
-            likesTotal.create({ pageId: req.query.article, pageLikes: 1 })
+          await  likesTotal.create({ pageId: req.query.article, pageLikes: 1 })
             res.json({ count: 1 })
         } else {
             doc.pageLikes--
@@ -68,7 +68,7 @@ router.get('/dislike', checkCookie, async (req, res, next) => {
 })
 
 router.get('/check', async (req, res, next) => {
-    likeMongo.findOne({ userId: req.cookies.kblg_usr }, (err, doc) => {
+   await likeMongo.findOne({ userId: req.cookies.kblg_usr }, (err, doc) => {
         if (doc == null) {
             res.json({ liked: false })
         } else {
@@ -85,9 +85,9 @@ router.get('/check', async (req, res, next) => {
 
 function updateUserActivity(user, articlePath, action) {
     if (action == 'true') {
-        likeMongo.findOne({ userId: user }, function (err, result) {
+      await  likeMongo.findOne({ userId: user }, function (err, result) {
             if (result == null) {
-                likeMongo.create({ userId: user, likesArticles: articlePath });
+            await    likeMongo.create({ userId: user, likesArticles: articlePath });
 
             } else {
 
@@ -102,7 +102,7 @@ function updateUserActivity(user, articlePath, action) {
     }
     else {
 
-        likeMongo.findOne({ userId: user }, function (err, result) {
+      await  likeMongo.findOne({ userId: user }, function (err, result) {
             let indexArt = result.likesArticles.indexOf(articlePath)
             result.likesArticles.splice(indexArt, 1)
             result.save()
