@@ -124,9 +124,10 @@ router.get('/setcookie', function (req, res) {
             sameSite: 'lax'
         });
         res.status(200)
+        res.end()
 
     }else{
-        res.status(200)
+        res.json({status:'it works!'})
     }
 })
 
