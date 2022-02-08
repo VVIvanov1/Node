@@ -125,6 +125,8 @@ router.get('/setcookie', function (req, res) {
         });
         res.status(200)
 
+    }else{
+        res.status(200)
     }
 })
 
