@@ -120,7 +120,7 @@ router.get('/setcookie', function (req, res) {
         res.cookie(`kblg_usr`, id, {
             expires: expiration,
             secure: true,
-            // httpOnly: true,
+            httpOnly: true,
             sameSite: 'lax'
         });
         res.status(200)
