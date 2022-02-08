@@ -22,7 +22,12 @@ const likesTotal = mongoose.model("pageslikes", pageTotalLikes);
 
 // router.get('/setcookie', checkCookie)
 
-router.get("/total", function (req, res, next) {
+router.get("/total", async (req, res, next)=> {
+    try {
+        await getTotal(req, res)
+    } catch (error) {
+        console.log(error);
+    }
     // likesTotal.findOne({ pageId: req.query.article }, function (err, data) {
     //     if (data == null) {
     //         res.json({ count: 10 });
@@ -30,15 +35,26 @@ router.get("/total", function (req, res, next) {
     //         res.json({ count: data.pageLikes });
     //     }
     // });
-    likesTotal.findOne({ pageId: req.query.article })
-    .then((doc)=>{
-        if(doc){
-            res.json({ count: doc.pageLikes });
-        }else{
-            res.json({ count: 1 });
-        }
-    })
+    // likesTotal.findOne({ pageId: req.query.article })
+    // .then((doc)=>{
+    //     if(doc){
+    //         res.json({ count: doc.pageLikes });
+    //     }else{
+    //         res.json({ count: 1 });
+    //     }
+    // })
 });
+async function getTotal(req, res) {
+    likesTotal.findOne({ pageId: req.query.article })
+        .then((doc) => {
+            if (doc) {
+                res.json({ count: doc.pageLikes });
+            } else {
+                res.json({ count: 1 });
+            }
+        })
+}
+
 router.get("/like", checkCookie, async function (req, res, next) {
     try {
         await setLike(req, res)
@@ -95,11 +111,11 @@ router.get("/dislike", checkCookie, function (req, res, next) {
 
 router.get("/check", async (req, res, next) => {
     try {
-       await checkLikedMongo(req, res)
+        await checkLikedMongo(req, res)
     } catch (error) {
         console.log(error);
     }
-    
+
 });
 
 async function checkLikedMongo(req, res) {
