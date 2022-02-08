@@ -23,13 +23,21 @@ const likesTotal = mongoose.model("pageslikes", pageTotalLikes);
 // router.get('/setcookie', checkCookie)
 
 router.get("/total", function (req, res, next) {
-    likesTotal.findOne({ pageId: req.query.article }, function (err, data) {
-        if (data == null) {
-            res.json({ count: 10 });
-        } else {
-            res.json({ count: data.pageLikes });
+    // likesTotal.findOne({ pageId: req.query.article }, function (err, data) {
+    //     if (data == null) {
+    //         res.json({ count: 10 });
+    //     } else {
+    //         res.json({ count: data.pageLikes });
+    //     }
+    // });
+    likesTotal.findOne({ pageId: req.query.article })
+    .then((doc)=>{
+        if(doc){
+            res.json({ count: doc.pageLikes });
+        }else{
+            res.json({ count: 1 });
         }
-    });
+    })
 });
 router.get("/like", checkCookie, async function (req, res, next) {
     try {
