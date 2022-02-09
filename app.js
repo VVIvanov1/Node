@@ -9,12 +9,14 @@ const responseTime = require('response-time');
 const assert = require('assert');
 const helmet = require('helmet');
 const csp = require('helmet-csp');
+const cors = require('cors');
 
 // const indexRouter = require('./routes/index');
 // const usersRouter = require('./routes/users');
 const likesRouter = require('./routes/likes')
 
 const app = express();
+app.use(cors())
 app.enable('trust proxy');
 
 
