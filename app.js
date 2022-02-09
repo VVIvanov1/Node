@@ -20,6 +20,10 @@ const likesRouter = require('./routes/likes')
 
 const app = express();
 app.use(cors())
+app.use((req, res, next) => {
+    res.header("Cross-Origin-Resource-Policy", "cross-origin")
+    next()
+})
 app.enable('trust proxy');
 
 
