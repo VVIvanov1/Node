@@ -19,9 +19,9 @@ router.get('/', (req,res,next)=>{
 
 
 
-// router.get('/art-about-cats',  renderLike)
+router.get('/art-about-cats',  renderLike)
 
-// router.get('/art-about-cats-2',  renderLike)
+router.get('/art-about-cats-2',  renderLike)
 
 
 

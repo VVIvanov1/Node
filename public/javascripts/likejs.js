@@ -30,10 +30,12 @@ function renderCounts(article) {
             return resp.json()
         })
         .then((json) => {
-
+            console.log(json);
             document.getElementById('likesCount').innerText = json.likes
             if (json.liked == true) {
                 document.getElementById('likeCheckbox').checked = true
+            }else{
+                document.getElementById('likeCheckbox').checked = false
             }
 
         })
