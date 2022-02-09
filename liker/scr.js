@@ -11,20 +11,43 @@ async function returnLikes(path, art, userId) {
     if (json == null || json == undefined) {
       return { likes: 0, liked: false };
     } else {
-      let thisArticle = json.pagesLikes.filter((i) => i.pageId == art)[0];
-      let userActivity = json.userActivity.filter((i) => i.userId == userId)[0];
-      if (thisArticle == undefined) {
-        // if this article is not liked by somone than return 0 and false
+      let thisArticle = json.pagesLikes.filter((i) => i.pageId == art);
+      // if this article is not liked by somone than return 0 and false
+      if (thisArticle.length == 0) {
+
         return { likes: 0, liked: false };
       } else {
         // if this article is  liked by somone than return actual likes and if it is liked by current user
-        let thisExactArticle = userActivity.pagesLiked.filter((i) => i == art);
+        let userActivity = json.userActivity.filter(i => i.userId == userId);
 
-        let artData = {
-          likes: thisArticle.pageLikes > 0 ? thisArticle.pageLikes : 0,
-          liked: thisExactArticle.length > 0 ? true : false,
-        };
-        return artData;
+
+        if (userActivity.length != 0) {
+          let isLiked = userActivity[0].pagesLiked.filter(i => i == art)
+          if (isLiked.length > 0) {
+            let artData = {
+              likes: thisArticle[0].pageLikes,
+              liked: true
+            };
+            return artData;
+          }else{
+            let artData = {
+              likes: thisArticle[0].pageLikes,
+              liked: false
+            };
+            return artData;
+          }
+
+          
+        } else {
+          let artData = {
+            likes: thisArticle[0].pageLikes,
+            liked: false
+          };
+          return artData;
+        }
+        // let thisExactArticle = userActivity.pagesLiked.filter((i) => i == art);
+
+
       }
     }
   } catch (error) {
@@ -84,17 +107,17 @@ async function setDislike(path, art, user) {
   if (userLikes.length > 0) {
     json.userActivity.map(item => {
       if (item.userId == user) {
-        
+
         let index = item.pagesLiked.indexOf(art)
-        
+
         item.pagesLiked.splice(index, 1)
-        
+
 
       }
     })
   }
 
-  
+
 
   // console.log(json);
 
