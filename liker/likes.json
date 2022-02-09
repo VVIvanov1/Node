@@ -1,4 +1,16 @@
 {
-    "userActivity": [],
-    "pagesLikes": []
+    "userActivity": [
+        {
+            "userId": "45d2d118-7851-4f5d-924c-e1f455ce3eb5",
+            "pagesLiked": [
+                "/art-about-cats"
+            ]
+        }
+    ],
+    "pagesLikes": [
+        {
+            "pageId": "/art-about-cats",
+            "pageLikes": 1
+        }
+    ]
 }
