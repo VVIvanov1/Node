@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
     e.preventDefault();
     checkCookie();
     renderCounts(pathName);
-    checkLiked(pathName);
+    // checkLiked(pathName);
 
 
     likeBTN.addEventListener('change', function (e) {
@@ -30,7 +30,12 @@ function renderCounts(article) {
             return resp.json()
         })
         .then((json) => {
-            document.getElementById('likesCount').innerText = json.count
+
+            document.getElementById('likesCount').innerText = json.likes
+            if (json.liked == true) {
+                document.getElementById('likeCheckbox').checked = true
+            }
+
         })
 }
 function increaseLikes(article) {
@@ -53,18 +58,18 @@ function decreaseLikes(article) {
             document.getElementById('likesCount').innerText = json.count
         })
 }
-function checkLiked(article) {
-    let likeBTN = document.getElementById('likeCheckbox')
-    let currentArticleLike = `/likes/check?article=${article}`
-    fetch(currentArticleLike)
-        .then((resp) => {
-            return resp.json()
-        }).then((json) => {
-            if (json.liked == true) {
-                likeBTN.checked = true
-            }
-        })
-}
+// function checkLiked(article) {
+//     let likeBTN = document.getElementById('likeCheckbox')
+//     let currentArticleLike = `/likes/check?article=${article}`
+//     fetch(currentArticleLike)
+//         .then((resp) => {
+//             return resp.json()
+//         }).then((json) => {
+//             if (json.liked == true) {
+//                 likeBTN.checked = true
+//             }
+//         })
+// }
 function checkCookie() {
     let queryUrl = `/likes/setcookie`;
     fetch(queryUrl)

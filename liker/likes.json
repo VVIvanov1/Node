@@ -1,27 +1,13 @@
 {
-    "users": [
-        {
-            "likesArticles": [
-                "/art-about-cats-2",
-                "/art-about-cats"
-            ],
-            "userId": "c31829f2-b1de-4f49-85f8-c0a9936901e2"
-        },
-        {
-            "likesArticles": [
-                "/art-about-cats"
-            ],
-            "userId": "f5bd75e9-ed8c-41a5-83e1-f11d096f76c3"
-        }
-    ],
-    "articles": [
-        {
-            "pageId": "/art-about-cats",
-            "pageLikes": 4
-        },
-        {
-            "pageId": "/art-about-cats-2",
-            "pageLikes": 1
-        }
-    ]
+    "userActivity":[{
+        "userId":"758786cd-cfc9-49d9-968d-8b5e1f0b9499",
+        "pagesLiked":["/art-about-cats-2"]
+    }],
+    "pagesLikes":[{
+        "pageId":"/art-about-cats",
+        "pageLikes":3
+    },{
+        "pageId":"/art-about-cats-2",
+        "pageLikes":1
+    }]
 }
