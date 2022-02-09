@@ -7,6 +7,7 @@ const returnLikes = require("../liker/scr").returnLikes;
 const setLike = require("../liker/scr").setLike;
 const setDislike = require("../liker/scr").setDislike;
 let pathToJson = "./liker/likes.json";
+const { readFile } = require("fs/promises");
 
 const id = uuidv4();
 let connectionString = process.env.MONGOOSE_CONNECTION;
@@ -27,7 +28,7 @@ const likesTotal = mongoose.model("pageslikes", pageTotalLikes);
 router.get("/total", async (req, res, next) => {
   try {
     let likesThisPage = await returnLikes(pathToJson, req.query.article, req.cookies.kblg_usr);
-    
+
     res.json(likesThisPage);
   } catch (error) {
     console.log(error);
@@ -36,41 +37,41 @@ router.get("/total", async (req, res, next) => {
 
 router.get("/like", checkCookie, async function (req, res, next) {
   try {
-    let liked = await setLike(pathToJson, req.query.article);
-    res.json(liked);
-  } catch (error) {}
-  updateUserActivity(req.cookies.kblg_usr, req.query.article, "true");
+    let article = req.query.article
+    let liked = await setLike(pathToJson, req.query.article, req.cookies.kblg_usr);
+
+    // const result = await readFile(pathToJson, "utf-8");
+    // let json = JSON.parse(result)
+
+    // if (liked.count == 1) {
+    //   json.pagesLikes.push({ pageId: liked.pageId, pageLikes: liked.count })
+    //   let obj = { userId: req.cookies.kblg_usr, pagesLiked: [] }
+    //   obj.pagesLiked.push(article)
+    //   json.userActivity.push(obj)
+      
+    //   json.userActivity.forEach(element => {
+    //     console.log(element.pageLikes);
+    //   });
+
+    // } else {
+
+    // }
+
+  } catch (error) { console.error(error) }
+  // updateUserActivity(req.cookies.kblg_usr, req.query.article, "true");
 });
 
 router.get("/dislike", checkCookie, async function (req, res, next) {
   try {
     let disliked = await setDislike(pathToJson, req.query.article);
-    res.json(disliked);
-  } catch (error) {}
-  updateUserActivity(req.cookies.kblg_usr, query.pageId, "false");
+    // res.json(disliked);
+  } catch (error) { }
+  // updateUserActivity(req.cookies.kblg_usr, query.pageId, "false");
 });
 
-// router.get("/check", async (req, res, next) => {
-//   try {
-//     await checkLikedMongo(req, res);
-//   } catch (error) {
-//     console.log(error);
-//   }
-// });
 
-// async function checkLikedMongo(req, res) {
-//   likeMongo.findOne({ userId: req.cookies.kblg_usr }).then((doc) => {
-//     if (doc == null) {
-//       res.json({ liked: false });
-//     } else {
-//       if (doc.likesArticles.indexOf(req.query.article) != -1) {
-//         res.json({ liked: true });
-//       } else {
-//         res.json({ liked: false });
-//       }
-//     }
-//   });
-// }
+
+
 
 function updateUserActivity(user, articlePath, action) {
   if (action == "true") {
