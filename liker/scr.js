@@ -71,19 +71,6 @@ async function setDislike(path, art, user) {
   // read file content and get its json
   const result = await readFile(path, "utf-8");
   let json = JSON.parse(result);
-  // check this page total likes & decrease likes count to return
-  // check the user actual likes 
-  let userLikes = json.userActivity.filter((i) => i.userId == user);
-  if (userLikes.length > 0) {
-    json.userActivity.map(item => {
-      if (item.userId == user) {
-        // item.pagesLiked.push(art)
-        let index = item.pagesLiked.indexOf(art)
-        item.pagesLiked.splice(index, 1)
-      }
-    })
-  }
-
   json.pagesLikes.map(item => {
     if (item.pageId == art) {
       item.pageLikes--
@@ -91,6 +78,23 @@ async function setDislike(path, art, user) {
     }
   }
   )
+  // check this page total likes & decrease likes count to return
+  // check the user actual likes 
+  let userLikes = json.userActivity.filter((i) => i.userId == user);
+  if (userLikes.length > 0) {
+    json.userActivity.map(item => {
+      if (item.userId == user) {
+        
+        let index = item.pagesLiked.indexOf(art)
+        
+        item.pagesLiked.splice(index, 1)
+        
+
+      }
+    })
+  }
+
+  
 
   // console.log(json);
 

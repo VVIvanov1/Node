@@ -39,34 +39,24 @@ router.get("/like", checkCookie, async function (req, res, next) {
   try {
     let article = req.query.article
     let liked = await setLike(pathToJson, req.query.article, req.cookies.kblg_usr);
+    res.json({completion: true})
 
-    // const result = await readFile(pathToJson, "utf-8");
-    // let json = JSON.parse(result)
 
-    // if (liked.count == 1) {
-    //   json.pagesLikes.push({ pageId: liked.pageId, pageLikes: liked.count })
-    //   let obj = { userId: req.cookies.kblg_usr, pagesLiked: [] }
-    //   obj.pagesLiked.push(article)
-    //   json.userActivity.push(obj)
-      
-    //   json.userActivity.forEach(element => {
-    //     console.log(element.pageLikes);
-    //   });
+  } catch (error) {
+    console.error(error)
+  }
 
-    // } else {
-
-    // }
-
-  } catch (error) { console.error(error) }
-  // updateUserActivity(req.cookies.kblg_usr, req.query.article, "true");
 });
 
 router.get("/dislike", checkCookie, async function (req, res, next) {
   try {
-    let disliked = await setDislike(pathToJson, req.query.article);
-    // res.json(disliked);
-  } catch (error) { }
-  // updateUserActivity(req.cookies.kblg_usr, query.pageId, "false");
+    let disliked = await setDislike(pathToJson, req.query.article, req.cookies.kblg_usr);
+    res.json({completion: true})
+  } catch (error) { 
+    console.error(error)
+
+  }
+  
 });
 
 
