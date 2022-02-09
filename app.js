@@ -12,28 +12,14 @@ const csp = require('helmet-csp');
 const cors = require('cors');
 const allowlist = ['https://kotoblog.kz'];
 
-const corsOptionsDelegate = (req, callback) => {
-    let corsOptions;
 
-    let isDomainAllowed = whitelist.indexOf(req.header('Origin')) !== -1;
-    let isExtensionAllowed = req.path.endsWith('.svg');
-
-    if (isDomainAllowed && isExtensionAllowed) {
-        // Enable CORS for this request
-        corsOptions = { origin: true }
-    } else {
-        // Disable CORS for this request
-        corsOptions = { origin: false }
-    }
-    callback(null, corsOptions)
-}
 
 // const indexRouter = require('./routes/index');
 // const usersRouter = require('./routes/users');
 const likesRouter = require('./routes/likes')
 
 const app = express();
-app.use(cors(corsOptionsDelegate))
+app.use(cors())
 app.enable('trust proxy');
 
 
