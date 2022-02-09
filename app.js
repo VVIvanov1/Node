@@ -10,9 +10,22 @@ const assert = require('assert');
 const helmet = require('helmet');
 const csp = require('helmet-csp');
 const cors = require('cors');
-var corsOptions = {
-    origin: 'https://kotoblog.kz/',
-    methods: "GET"
+const allowlist = ['https://kotoblog.kz'];
+
+const corsOptionsDelegate = (req, callback) => {
+    let corsOptions;
+
+    let isDomainAllowed = whitelist.indexOf(req.header('Origin')) !== -1;
+    let isExtensionAllowed = req.path.endsWith('.svg');
+
+    if (isDomainAllowed && isExtensionAllowed) {
+        // Enable CORS for this request
+        corsOptions = { origin: true }
+    } else {
+        // Disable CORS for this request
+        corsOptions = { origin: false }
+    }
+    callback(null, corsOptions)
 }
 
 // const indexRouter = require('./routes/index');
@@ -20,7 +33,7 @@ var corsOptions = {
 const likesRouter = require('./routes/likes')
 
 const app = express();
-app.use(cors(corsOptions))
+app.use(cors(corsOptionsDelegate))
 app.enable('trust proxy');
 
 
