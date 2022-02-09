@@ -9,21 +9,35 @@ async function returnLikes(path, art, userId) {
   const file = await readFile(path, "utf-8");
   let json = JSON.parse(file);
   let resp = {}
-  
+
   let likesTotal = json.pagesLikes.filter(ar => ar.pageId === art)
   likesTotal.length === 0 ? resp.likes = 0 : resp.likes = likesTotal[0].pageLikes
-  
+
+  // let userActiv = json.userActivity.filter(act => act.userId === userId)
+  // if (userActiv.length === 0) {
+  //   resp.liked = false
+  // } else {
+  //   let likedThisArticle = userActiv[0].pagesLiked.filter(p => p === art)
+
+  //   likedThisArticle.length === 0 ? resp.liked = false : resp.liked = true
+  // }
+
+  return resp
+
+}
+async function renderLike(path, art, userId) {
+  const file = await readFile(path, "utf-8");
+  let json = JSON.parse(file);
+  let resp = {}
   let userActiv = json.userActivity.filter(act => act.userId === userId)
   if (userActiv.length === 0) {
     resp.liked = false
   } else {
     let likedThisArticle = userActiv[0].pagesLiked.filter(p => p === art)
-    
+
     likedThisArticle.length === 0 ? resp.liked = false : resp.liked = true
   }
-  
   return resp
- 
 }
 
 
@@ -98,6 +112,7 @@ async function setDislike(path, art, user) {
 module.exports.returnLikes = returnLikes;
 module.exports.setLike = setLike;
 module.exports.setDislike = setDislike;
+module.exports.renderLike = renderLike;
 
  // let thisArticle = json.pagesLikes.filter((i) => i.pageId == art);
   // if this article is not liked by somone than return 0 and false

@@ -6,7 +6,9 @@ document.addEventListener('DOMContentLoaded', function (e) {
 
     e.preventDefault();
     checkCookie();
-    renderCounts(pathName);
+    renderTotal(pathName);
+    renderLike(pathName);
+
     
 
 
@@ -23,22 +25,36 @@ document.addEventListener('DOMContentLoaded', function (e) {
 
     })
 })
-function renderCounts(article) {
+function renderTotal(article) {
     let articleTotalLikes = `/likes/total?article=${article}`
     fetch(articleTotalLikes)
         .then((resp) => {
             return resp.json()
         })
         .then((json) => {
-            console.log(json);
+          
             document.getElementById('likesCount').innerText = json.likes
-            if (json.liked == true) {
-                document.getElementById('likeCheckbox').checked = true
-            }else{
-                document.getElementById('likeCheckbox').checked = false
-            }
+            // if (json.liked == true) {
+            //     document.getElementById('likeCheckbox').checked = true
+            // }else{
+            //     document.getElementById('likeCheckbox').checked = false
+            // }
 
         })
+}
+function renderLike(article){
+    let articleIsLiked = `/likes/isliked?article=${article}`
+    fetch(articleIsLiked)
+    .then((resp)=>{
+        return resp.json()
+    })
+    .then((json)=>{
+        if(json.liked === true){
+            document.getElementById('likeCheckbox').checked = true
+        }else{
+            document.getElementById('likeCheckbox').checked = false
+        }
+    })
 }
 function increaseLikes(article) {
     let articleIncreaseLikes = `/likes/like?article=${article}`

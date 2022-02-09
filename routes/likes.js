@@ -5,6 +5,7 @@ const { v4: uuidv4 } = require("uuid");
 const returnLikes = require("../liker/scr").returnLikes;
 const setLike = require("../liker/scr").setLike;
 const setDislike = require("../liker/scr").setDislike;
+const renderLike = require("../liker/scr").renderLike;
 let pathToJson = "./liker/likes.json";
 
 
@@ -13,14 +14,22 @@ const id = uuidv4();
 
 router.get("/total", async (req, res, next) => {
   try {
-    
+
     let likesThisPage = await returnLikes(pathToJson, req.query.article, req.cookies.kblg_usr);
 
-    res.json(likesThisPage).end();
+    res.json(likesThisPage)
   } catch (error) {
     console.log(error);
   }
 });
+router.get("/isliked", async (req, res, next) => {
+  try {
+    let isLiked = await renderLike(pathToJson, req.query.article, req.cookies.kblg_usr)
+    res.json(isLiked)
+  } catch (error) {
+    console.log(error);
+  }
+})
 
 router.get("/like", async function (req, res, next) {
   try {
