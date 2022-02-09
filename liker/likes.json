@@ -1,35 +1,4 @@
 {
-    "userActivity": [
-        {
-            "userId": "758786cd-cfc9-49d9-968d-8b5e1f0b9499",
-            "pagesLiked": [
-                "/kak-koshki-predskazyvayut-pogodu",
-                "/art-about-cats"
-            ]
-        },
-        {
-            "userId": "8c2246a9-2e95-43dc-808d-e17a692e5a30",
-            "pagesLiked": [
-                "/kak-koshki-predskazyvayut-pogodu",
-                "/art-about-cats-2"
-            ]
-        },
-        {
-            "userId": "bbbe5caa-dc5a-423d-a901-b820a0f906ec",
-            "pagesLiked": [
-                "/kak-koshki-predskazyvayut-pogodu",
-                "/art-about-cats"
-            ]
-        }
-    ],
-    "pagesLikes": [
-        {
-            "pageId": "/art-about-cats",
-            "pageLikes": 3
-        },
-        {
-            "pageId": "/kak-koshki-predskazyvayut-pogodu",
-            "pageLikes": 3
-        }
-    ]
+    "userActivity": [],
+    "pagesLikes": []
 }

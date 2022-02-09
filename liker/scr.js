@@ -14,13 +14,10 @@ async function returnLikes(path, art, userId) {
       let thisArticle = json.pagesLikes.filter((i) => i.pageId == art);
       // if this article is not liked by somone than return 0 and false
       if (thisArticle.length == 0) {
-
         return { likes: 0, liked: false };
       } else {
         // if this article is  liked by somone than return actual likes and if it is liked by current user
         let userActivity = json.userActivity.filter(i => i.userId == userId);
-
-
         if (userActivity.length != 0) {
           let isLiked = userActivity[0].pagesLiked.filter(i => i == art)
           if (isLiked.length > 0) {
@@ -29,7 +26,7 @@ async function returnLikes(path, art, userId) {
               liked: true
             };
             return artData;
-          }else{
+          } else {
             let artData = {
               likes: thisArticle[0].pageLikes,
               liked: false
@@ -37,7 +34,6 @@ async function returnLikes(path, art, userId) {
             return artData;
           }
 
-          
         } else {
           let artData = {
             likes: thisArticle[0].pageLikes,
@@ -45,8 +41,6 @@ async function returnLikes(path, art, userId) {
           };
           return artData;
         }
-        // let thisExactArticle = userActivity.pagesLiked.filter((i) => i == art);
-
 
       }
     }
@@ -84,7 +78,7 @@ async function setLike(path, art, user) {
     }
     )
   }
-  // console.log(json);
+ 
   fs.writeFile(path, JSON.stringify(json), function writeJSON(err) {
     if (err) return console.log(err);
 
@@ -116,10 +110,6 @@ async function setDislike(path, art, user) {
       }
     })
   }
-
-
-
-  // console.log(json);
 
   fs.writeFile(path, JSON.stringify(json), function writeJSON(err) {
     if (err) return console.log(err);
