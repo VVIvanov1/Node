@@ -10,13 +10,17 @@ const assert = require('assert');
 const helmet = require('helmet');
 const csp = require('helmet-csp');
 const cors = require('cors');
+var corsOptions = {
+    origin: 'https://kotoblog.kz/',
+    methods: "GET"
+}
 
 // const indexRouter = require('./routes/index');
 // const usersRouter = require('./routes/users');
 const likesRouter = require('./routes/likes')
 
 const app = express();
-app.use(cors())
+app.use(cors(corsOptions))
 app.enable('trust proxy');
 
 
