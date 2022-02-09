@@ -8,9 +8,9 @@ const cp = require('child_process');
 const responseTime = require('response-time');
 const assert = require('assert');
 const helmet = require('helmet');
-const csp = require('helmet-csp');
+// const csp = require('helmet-csp');
 const cors = require('cors');
-const allowlist = ['https://kotoblog.kz'];
+// const allowlist = ['https://kotoblog.kz'];
 
 
 
@@ -28,17 +28,17 @@ app.enable('trust proxy');
 
 
 app.use(helmet()); // Take the defaults to start with
-app.use(csp({
-    // Specify directives for content sources
-    directives: {
-        defaultSrc: ["'self'"],
-        scriptSrc: ["'self'", "'unsafe-inline'", 'ajax.googleapis.com',
-            'maxcdn.bootstrapcdn.com'],
-        styleSrc: ["'self'", "'unsafe-inline'", 'maxcdn.bootstrapcdn.com'],
-        fontSrc: ["'self'", 'maxcdn.bootstrapcdn.com'],
-        imgSrc: ['*']
-    }
-}));
+// app.use(csp({
+//     // Specify directives for content sources
+//     directives: {
+//         defaultSrc: ["'self'"],
+//         scriptSrc: ["'self'", "'unsafe-inline'", 'ajax.googleapis.com',
+//             'maxcdn.bootstrapcdn.com'],
+//         styleSrc: ["'self'", "'unsafe-inline'", 'maxcdn.bootstrapcdn.com'],
+//         fontSrc: ["'self'", 'maxcdn.bootstrapcdn.com'],
+//         imgSrc: ['*']
+//     }
+// }));
 app.use(responseTime());
 
 // const node2 = cp.fork('./worker/app_FORK.js');
