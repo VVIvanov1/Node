@@ -17,9 +17,8 @@ async function returnLikes(path, art, userId) {
   if (userActiv.length === 0) {
     resp.liked = false
   } else {
-    let likedThisArticle = userActiv[0].pagesLiked.filter(p => {
-      p === art
-    })
+    let likedThisArticle = userActiv[0].pagesLiked.filter(p => p === art)
+    
     likedThisArticle.length === 0 ? resp.liked = false : resp.liked = true
   }
   
