@@ -25,6 +25,7 @@ router.get("/total", async (req, res, next) => {
 router.get("/isliked", async (req, res, next) => {
   try {
     let isLiked = await renderLike(pathToJson, req.query.article, req.cookies.kblg_usr)
+    isLiked.cooks = req.cookies
     res.json(isLiked)
   } catch (error) {
     console.log(error);

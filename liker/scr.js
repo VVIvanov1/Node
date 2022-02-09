@@ -29,6 +29,7 @@ async function renderLike(path, art, userId) {
   const file = await readFile(path, "utf-8");
   let json = JSON.parse(file);
   let resp = {}
+  
   let userActiv = json.userActivity.filter(act => act.userId === userId)
   if (userActiv.length === 0) {
     resp.liked = false
