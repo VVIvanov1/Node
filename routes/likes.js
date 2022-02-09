@@ -63,26 +63,26 @@ router.get("/dislike", checkCookie, async function (req, res, next) {
 
 
 
-function updateUserActivity(user, articlePath, action) {
-  if (action == "true") {
-    likeMongo.findOne({ userId: user }, function (err, result) {
-      if (result == null) {
-        likeMongo.create({ userId: user, likesArticles: articlePath });
-      } else {
-        if (result.likesArticles.indexOf(articlePath) == -1) {
-          result.likesArticles.push(articlePath);
-          result.save();
-        }
-      }
-    });
-  } else {
-    likeMongo.findOne({ userId: user }, function (err, result) {
-      let indexArt = result.likesArticles.indexOf(articlePath);
-      result.likesArticles.splice(indexArt, 1);
-      result.save();
-    });
-  }
-}
+// function updateUserActivity(user, articlePath, action) {
+//   if (action == "true") {
+//     likeMongo.findOne({ userId: user }, function (err, result) {
+//       if (result == null) {
+//         likeMongo.create({ userId: user, likesArticles: articlePath });
+//       } else {
+//         if (result.likesArticles.indexOf(articlePath) == -1) {
+//           result.likesArticles.push(articlePath);
+//           result.save();
+//         }
+//       }
+//     });
+//   } else {
+//     likeMongo.findOne({ userId: user }, function (err, result) {
+//       let indexArt = result.likesArticles.indexOf(articlePath);
+//       result.likesArticles.splice(indexArt, 1);
+//       result.save();
+//     });
+//   }
+// }
 router.get("/setcookie", setCookie);
 
 function setCookie(req, res, next) {

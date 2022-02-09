@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
     })
 })
 function renderCounts(article) {
-    let articleTotalLikes = `/likes/total?article=${article}`
+    let articleTotalLikes = `https://yarma.kz/likes/total?article=${article}`
     fetch(articleTotalLikes)
         .then((resp) => {
             return resp.json()
@@ -39,7 +39,7 @@ function renderCounts(article) {
         })
 }
 function increaseLikes(article) {
-    let articleIncreaseLikes = `/likes/like?article=${article}`
+    let articleIncreaseLikes = `https://yarma.kz/likes/like?article=${article}`
     fetch(articleIncreaseLikes)
         .then((resp) => {
             return resp.json()
@@ -53,7 +53,7 @@ function increaseLikes(article) {
         })
 }
 function decreaseLikes(article) {
-    let articleDecreaseLikes = `/likes/dislike?article=${article}`
+    let articleDecreaseLikes = `https://yarma.kz/likes/dislike?article=${article}`
     fetch(articleDecreaseLikes)
         .then((resp) => {
             return resp.json()
@@ -68,7 +68,7 @@ function decreaseLikes(article) {
 }
 
 function checkCookie() {
-    let queryUrl = `/likes/setcookie`;
+    let queryUrl = `https://yarma.kz/likes/setcookie`;
     fetch(queryUrl)
         .then((resp) => {
             return resp

@@ -10,7 +10,7 @@ const assert = require('assert');
 const helmet = require('helmet');
 const csp = require('helmet-csp');
 
-const indexRouter = require('./routes/index');
+// const indexRouter = require('./routes/index');
 // const usersRouter = require('./routes/users');
 const likesRouter = require('./routes/likes')
 
@@ -49,7 +49,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
+// app.use('/', indexRouter);
 // app.use('/users', usersRouter);
 app.use('/likes', likesRouter);
 
