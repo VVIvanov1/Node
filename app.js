@@ -19,10 +19,20 @@ const cors = require('cors');
 const likesRouter = require('./routes/likes')
 
 const app = express();
-app.use(cors())
-app.use((req, res, next) => {
-    res.header("Cross-Origin-Resource-Policy", "cross-origin")
-    next()
+// app.use(cors())
+var allowlist = ['http://kotoblog.kz']
+var corsOptionsDelegate = function (req, callback) {
+  var corsOptions;
+  if (allowlist.indexOf(req.header('Origin')) !== -1) {
+    corsOptions = { origin: true } // reflect (enable) the requested origin in the CORS response
+  } else {
+    corsOptions = { origin: false } // disable CORS for this request
+  }
+  callback(null, corsOptions) // callback expects two parameters: error and options
+}
+
+app.get('/images/svg/Hashflag-AppleEvent.svg?test=1', cors(corsOptionsDelegate), function (req, res, next) {
+  res.sendFile('/images/svg/Hashflag-AppleEvent.svg')
 })
 app.enable('trust proxy');
 
