@@ -1,19 +1,19 @@
 const express = require("express");
 const router = express.Router();
 const { v4: uuidv4 } = require("uuid");
-// const mongoose = require("mongoose");
-// const { Schema } = mongoose;
+
 const returnLikes = require("../liker/scr").returnLikes;
 const setLike = require("../liker/scr").setLike;
 const setDislike = require("../liker/scr").setDislike;
 let pathToJson = "./liker/likes.json";
-// const { readFile } = require("fs/promises");
+
 
 const id = uuidv4();
 
 
 router.get("/total", async (req, res, next) => {
   try {
+    
     let likesThisPage = await returnLikes(pathToJson, req.query.article, req.cookies.kblg_usr);
 
     res.json(likesThisPage).end();
