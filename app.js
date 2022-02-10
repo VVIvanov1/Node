@@ -21,7 +21,7 @@ const likesRouter = require('./routes/likes')
 const app = express();
 
 let corsOptions = {
-    origin: true,
+    origin: ["https://kotoblog.kz"],
     // origin: false,
     preflightContinue: true,
     credentials: true,
