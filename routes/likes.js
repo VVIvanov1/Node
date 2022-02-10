@@ -41,7 +41,7 @@ router.get("/total", async (req, res, next) => {
   try {
     let likesThisPage = await renderTotal(pathToJson, req.query.article, req.cookies.kblg_usr)
     res.json(likesThisPage)
-  
+
   } catch (error) {
     console.error(error)
   }
@@ -57,7 +57,7 @@ router.get("/total", async (req, res, next) => {
 router.get("/like", async function (req, res, next) {
   try {
     let liked = await saveLike(pathToJson, req.query.article, req.cookies.kblg_usr)
-    res.json({completion: true})
+    res.json({ completion: true })
   } catch (error) {
     console.error(error)
   }
@@ -118,7 +118,7 @@ router.get("/setcookie", setCookie);
 
 function setCookie(req, res, next) {
   if (req.cookies.kblg_usr) {
-    res.status(200).send({ok:true});
+    res.status(200).send({ ok: true });
   } else {
     let expiration = new Date();
     expiration.setDate(expiration.getDate() + 365 * 3);
@@ -130,9 +130,22 @@ function setCookie(req, res, next) {
       httpOnly: true
 
     });
-    res.status(200).send({ok:true});
+    res.status(200).send({ ok: true });
   }
 }
+
+function checkCookie() {
+  let queryUrl = `https://yarma.kz/likes/setcookie`;
+  fetch(queryUrl, {
+    credentials: 'include', method: "GET", headers: new Headers({
+      'Accept': 'application/json',
+      'Access-Control-Allow-Origin': 'https://kotoblog.kz',
+      'Content-Type': 'application/json'
+    })})
+      .then((resp) => {
+        return resp
+      })
+  }
 
 // function checkCookie(req, res, next) {
 //   let expiration = new Date();
