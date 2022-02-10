@@ -19,6 +19,7 @@ const indexRouter = require('./routes/index');
 const likesRouter = require('./routes/likes')
 
 const app = express();
+app.set('trust proxy', 1);
 
 let corsOptions = {
     origin: true,

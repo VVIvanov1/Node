@@ -126,7 +126,7 @@ function setCookie(req, res, next) {
     res.cookie(`kblg_usr`, id, {
       expires: expiration,
       secure: true,
-      // SameSite: false,
+      SameSite: false,
       httpOnly: true
 
     });
