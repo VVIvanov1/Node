@@ -22,7 +22,7 @@ const app = express();
 
 let corsOptions = {
     origin: ["https://kotoblog.kz/","https://yarma.kz"],
-    credentials: true,
+    credentials: "include",
     allowedHeaders: ["Content-Type","x-requested-with"],
     methods:["GET"]
 
