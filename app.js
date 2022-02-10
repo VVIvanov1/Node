@@ -21,8 +21,9 @@ const likesRouter = require('./routes/likes')
 const app = express();
 
 let corsOptions = {
-    origin: true, 
+    origin: true,
     credentials: true,
+    allowedHeaders: "Content-Type,Authorization"
 
 }
 
