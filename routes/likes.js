@@ -11,22 +11,31 @@ const saveLike = require("../liker/scr").saveLike;
 const saveDislike = require("../liker/scr").saveDislike;
 let pathToJson = "./liker/likes.json";
 const { readFile } = require("fs/promises");
+const { NONAME } = require("dns");
 
 const id = uuidv4();
-let connectionString = process.env.MONGOOSE_CONNECTION;
-mongoose.connect(connectionString);
+// let connectionString = process.env.MONGOOSE_CONNECTION;
+// mongoose.connect(connectionString);
 
-const articlikes = new Schema({
-  likesArticles: [String],
-  userId: String,
-});
-const pageTotalLikes = new Schema({
-  pageId: String,
-  pageLikes: Number,
-});
+// const articlikes = new Schema({
+//   likesArticles: [String],
+//   userId: String,
+// });
+// const pageTotalLikes = new Schema({
+//   pageId: String,
+//   pageLikes: Number,
+// });
 
-const likeMongo = mongoose.model("articleslikes", articlikes);
-const likesTotal = mongoose.model("pageslikes", pageTotalLikes);
+// const likeMongo = mongoose.model("articleslikes", articlikes);
+// const likesTotal = mongoose.model("pageslikes", pageTotalLikes);
+
+// router.use(function(req, res, next) {
+//   // inject default headers
+//   res.header('cache-control', 'private, max-age=0');
+//   // res.header('expires', new Date(Date.now()).toUTCString());
+//   next();
+// });
+
 
 router.get("/total", async (req, res, next) => {
   try {
@@ -117,6 +126,7 @@ function setCookie(req, res, next) {
     res.cookie(`kblg_usr`, id, {
       expires: expiration,
       secure: true,
+      SameSite: None,
       httpOnly: true
 
     });
