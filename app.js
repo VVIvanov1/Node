@@ -33,7 +33,7 @@ app.use(cors(corsOptions))
 app.enable('trust proxy');
 
 
-app.use(helmet()); // Take the defaults to start with
+//app.use(helmet()); // Take the defaults to start with
 // app.use(csp({
 //     // Specify directives for content sources
 //     directives: {
