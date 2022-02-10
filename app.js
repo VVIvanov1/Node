@@ -21,14 +21,15 @@ const likesRouter = require('./routes/likes')
 const app = express();
 
 let corsOptions = {
-    origin: true,
+    origin: 'https://kotoblog.kz',
     // origin: false,
     credentials: true,
-    // allowedHeaders: ["Origin", "X-Requested-With", "Content-Type", "Accept"],
-    // methods:["GET"]
+    allowedHeaders: ["Origin", "X-Requested-With", "Content-Type", "Accept"],
+    methods:["GET"]
 
 }
-app.options('*', cors({origin: 'https://kotoblog.kz'}))
+app.use(cors())
+// app.options('*', cors({origin: 'https://kotoblog.kz'}))
 // app.use((req, res, next) => {
 //     res.header('Access-Control-Allow-Origin', req.headers.origin);
 //     res.header('Access-Control-Allow-Credentials', true);
