@@ -118,7 +118,7 @@ router.get("/setcookie", setCookie);
 
 function setCookie(req, res, next) {
   if (req.cookies.kblg_usr) {
-    res.status(200).send();
+    res.status(200).send({ok:true});
   } else {
     let expiration = new Date();
     expiration.setDate(expiration.getDate() + 365 * 3);
@@ -126,11 +126,11 @@ function setCookie(req, res, next) {
     res.cookie(`kblg_usr`, id, {
       expires: expiration,
       secure: true,
-      SameSite: false,
+      // SameSite: false,
       httpOnly: true
 
     });
-    res.status(200).send();
+    res.status(200).send({ok:true});
   }
 }
 
