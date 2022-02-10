@@ -127,7 +127,7 @@ function setCookie(req, res, next) {
       expires: expiration,
       secure: true,
       SameSite: false,
-      httpOnly: true
+      // httpOnly: true
 
     });
     res.status(200).send({ ok: true });
