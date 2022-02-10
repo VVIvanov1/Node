@@ -28,7 +28,7 @@ let corsOptions = {
     // methods:["GET"]
 
 }
-app.options('*', cors())
+app.options('*', cors({origin: 'https://kotoblog.kz'}))
 // app.use((req, res, next) => {
 //     res.header('Access-Control-Allow-Origin', req.headers.origin);
 //     res.header('Access-Control-Allow-Credentials', true);
