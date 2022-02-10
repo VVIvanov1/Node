@@ -21,14 +21,14 @@ const likesRouter = require('./routes/likes')
 const app = express();
 
 let corsOptions = {
-    origin: 'https://kotoblog.kz',
+    origin: true,
     // origin: false,
     credentials: true,
     allowedHeaders: ["Origin", "X-Requested-With", "Content-Type", "Accept"],
     methods:["GET"]
 
 }
-app.use(cors())
+app.use(cors(corsOptions))
 // app.options('*', cors({origin: 'https://kotoblog.kz'}))
 // app.use((req, res, next) => {
 //     res.header('Access-Control-Allow-Origin', req.headers.origin);
@@ -38,7 +38,7 @@ app.use(cors())
 //   });
 
 
-app.enable('trust proxy');
+// app.enable('trust proxy');
 
 
 //app.use(helmet()); // Take the defaults to start with
