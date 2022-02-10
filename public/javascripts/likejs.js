@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
     e.preventDefault();
     checkCookie();
     renderTotal(pathName);
-    renderLike(pathName);
+    // renderLike(pathName);
 
     
 
@@ -34,11 +34,11 @@ function renderTotal(article) {
         .then((json) => {
           
             document.getElementById('likesCount').innerText = json.likes
-            // if (json.liked == true) {
-            //     document.getElementById('likeCheckbox').checked = true
-            // }else{
-            //     document.getElementById('likeCheckbox').checked = false
-            // }
+            if (json.liked == true) {
+                document.getElementById('likeCheckbox').checked = true
+            }else{
+                document.getElementById('likeCheckbox').checked = false
+            }
 
         })
 }
