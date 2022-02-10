@@ -30,6 +30,10 @@ let corsOptions = {
 
 }
 app.use(cors(corsOptions))
+app.use(function (req, res, next) {
+    res.header('Access-Control-Allow-Origin', req.header('origin'));
+    next();
+});
 // app.options('*', cors({origin: 'https://kotoblog.kz'}))
 // app.use((req, res, next) => {
 //     res.header('Access-Control-Allow-Origin', req.headers.origin);
