@@ -21,8 +21,9 @@ const likesRouter = require('./routes/likes')
 const app = express();
 
 let corsOptions = {
-    origin: 'https://kotoblog.kz/kak-koshki-predskazyvayut-pogodu',
+    origin: true,
     // origin: false,
+    preflightContinue: true,
     credentials: true,
     allowedHeaders: ["Origin", "X-Requested-With", "Content-Type", "Accept"],
     methods:["GET"]
