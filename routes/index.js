@@ -1,13 +1,13 @@
 const express = require('express');
 const router = express.Router();
 
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
 
-const { Schema } = mongoose;
+// const { Schema } = mongoose;
 
 
-let connectionString = process.env.MONGOOSE_CONNECTION;
-mongoose.connect(connectionString)
+// let connectionString = process.env.MONGOOSE_CONNECTION;
+// mongoose.connect(connectionString)
 
 
 function renderLike(req, res, next) {
