@@ -1,1 +1,10 @@
-{"articles":[{"articleId":"/art-about-cats","users":["10eeebfa-339f-40f8-9b65-1ff8ef542a99","5c446bf9-3238-4f42-bbe7-339134ad3437","904b56f0-b94f-4fbe-8f2b-9e9fb2e3407a"]},{"articleId":"/art-about-cats-2","users":["10eeebfa-339f-40f8-9b65-1ff8ef542a99","45d2d118-7851-4f5d-924c-e1f455ce3eb5"]},{"articleId":"/kak-koshki-predskazyvayut-pogodu","users":["10eeebfa-339f-40f8-9b65-1ff8ef542a99","45d2d118-7851-4f5d-924c-e1f455ce3eb5"]}]}
+{
+    "articles": [
+        {
+            "articleId": "/art-about-cats",
+            "users": [
+                "4fc96b69-28a8-4f79-8c25-56186f02b507"
+            ]
+        }
+    ]
+}

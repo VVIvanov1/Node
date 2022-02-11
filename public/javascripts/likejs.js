@@ -3,11 +3,13 @@ document.addEventListener('DOMContentLoaded', async function (e) {
     let likeBTN = document.getElementById('likeCheckbox');
 
     let pathName = window.location.pathname;
-    let kb = await window.cookieStore.get("kblg_user")
+    // let kb = await window.cookieStore.get("kblg_user")
+    let cookiesArr = document.cookie.split(';')
+    let kbString = cookiesArr.map(i=> i.trim()).find(u=>u.startsWith('kblg_user'))
 
     e.preventDefault();
     checkCookie();
-    renderTotal(pathName, kb.value);
+    renderTotal(pathName, kbString);
     // renderLike(pathName, kb.value);
 
 
@@ -18,16 +20,16 @@ document.addEventListener('DOMContentLoaded', async function (e) {
         e.preventDefault();
         if (e.currentTarget.checked) {
 
-            increaseLikes(article, kb.value)
+            increaseLikes(article, kbString)
         } else {
-            decreaseLikes(article, kb.value)
+            decreaseLikes(article, kbString)
         }
 
 
     })
 })
 function renderTotal(article, user) {
-    let articleTotalLikes = `/likes/total?article=${article}&kblg_user=${user}`
+    let articleTotalLikes = `/likes/total?article=${article}&${user}`
     fetch(articleTotalLikes)
         .then((resp) => {
             return resp.json()
@@ -44,7 +46,7 @@ function renderTotal(article, user) {
         })
 }
 function increaseLikes(article, user) {
-    let articleIncreaseLikes = `/likes/like?article=${article}&kblg_user=${user}`
+    let articleIncreaseLikes = `/likes/like?article=${article}&${user}`
     fetch(articleIncreaseLikes)
         .then((resp) => {
             return resp.json()
@@ -58,7 +60,7 @@ function increaseLikes(article, user) {
         })
 }
 function decreaseLikes(article, user) {
-    let articleDecreaseLikes = `/likes/dislike?article=${article}&kblg_user=${user}`
+    let articleDecreaseLikes = `/likes/dislike?article=${article}&${user}`
     fetch(articleDecreaseLikes)
         .then((resp) => {
             return resp.json()
@@ -75,13 +77,15 @@ async function checkCookie() {
 
     let queryUrl
 
-    let user = await window.cookieStore.get("kblg_user")
+    
+    let cookiesArr = document.cookie.split(';')
+    let kbString = cookiesArr.map(i=> i.trim()).find(u=>u.startsWith('kblg_user'))
 
-    if (!user) {
+    if (!kbString) {
         queryUrl = `/likes/setcookie`
     } else {
        
-        queryUrl = `/likes/setcookie?kblg_user=${user.value}`
+        queryUrl = `/likes/setcookie?${kbString}`
         
     }
 
