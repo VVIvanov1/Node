@@ -17,7 +17,7 @@ async function renderTotal(path, art, userId) {
       let isLike = thisArticle.users.includes(userId)
       return { likes, liked: isLike, obj: thisArticle }
     } else {
-      return { likes: 0, isLiked: false, obj: {} }
+      return { likes: 0, liked: false, obj: {} }
     }
   } catch (error) {
     console.error(error)
@@ -76,7 +76,7 @@ async function saveLike(path, art, userId) {
   const result = await readFile(path, "utf-8");
   let json = JSON.parse(result);
   let thisArticle = json.articles.find(item => item.articleId === art)
-  if (thisArticle) {
+  if (thisArticle != undefined) {
     json.articles.map(article => {
       if (article.articleId === art) {
         article.users.push(userId)

@@ -1,10 +1,1 @@
-{
-    "articles": [
-        {
-            "articleId": "/art-about-cats",
-            "users": [
-                "4fc96b69-28a8-4f79-8c25-56186f02b507"
-            ]
-        }
-    ]
-}
+{"articles":[{"articleId":"/art-about-cats","users":["e1f95431-91e9-4e6f-b850-32007249ba80","c88f23d7-e7b4-4ab8-9b79-b30c89079883","4e5c4de9-44c8-4df1-bce2-562bd2d25bda"]}]}
